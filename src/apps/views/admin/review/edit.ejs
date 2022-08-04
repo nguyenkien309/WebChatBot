@@ -1,0 +1,124 @@
+<%- include('../layout/head', {title: title}); %>
+
+  <body>
+    <!-- Layout wrapper -->
+    <div class="layout-wrapper layout-content-navbar">
+      <div class="layout-container">
+        <!-- Menu -->
+
+        <%- include('../layout/sidebar'); %>
+
+          <!-- / Menu -->
+
+          <!-- Layout container -->
+          <div class="layout-page">
+            <!-- Navbar -->
+
+            <%- include ('../layout/navbar'); %>
+
+              <!-- / Navbar -->
+
+              <!-- Content wrapper -->
+              <div class="content-wrapper">
+                <!-- Content -->
+
+                <div class="container-xxl flex-grow-1 container-p-y">
+                  <!-- <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Account Settings /</span> Account</h4> -->
+
+                  <div class="row">
+                    <div class="col-md-12">
+                      <ul class="nav nav-pills flex-column flex-md-row mb-3">
+                        <li class="nav-item">
+                          <a class="nav-link active" href="javascript:void(0);"><i class="bx bx-user me-1"></i>
+                            Review</a>
+                        </li>
+
+                      </ul>
+                      <div class="card mb-4">
+                        <h5 class="card-header">Thông Tin Review</h5>
+                        <!-- Account -->
+
+                        <hr class="my-0" />
+                        <div class="card-body">
+                          <form id="formAccountSettings" method="POST" action="/admin/review/edit/<%= review?.id %> "
+                            enctype="multipart/form-data">
+                            <div class="row">
+                              <div class="d-flex align-items-start align-items-sm-center gap-4">
+
+
+                                <img src="/static/images/<%=review?.avatar%>  " alt="user-avatar"
+                                  class="d-block rounded" height="100" width="100" id="uploadedAvatar" />
+                                <div class="button-wrapper">
+                                  <label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
+                                    <span class="d-none d-sm-block">Upload new photo</span>
+                                    <i class="bx bx-upload d-block d-sm-none"></i>
+                                    <input type="file" id="upload" name="avatar" class="account-file-input" hidden
+                                      accept="image/png, image/jpeg" />
+                                  </label>
+                                  <button type="button" class="btn btn-outline-secondary account-image-reset mb-4">
+                                    <i class="bx bx-reset d-block d-sm-none"></i>
+                                    <span class="d-none d-sm-block">Reset</span>
+                                  </button>
+
+                                  <p class="text-muted mb-0">Ảnh định dạng JPG, GIF or PNG. Dung lượng tối đa 800K</p>
+                                </div>
+                              </div>
+                              <div class="mb-3 col-md-6">
+                                <label for="fullname" class="form-label">Họ Tên</label>
+                                <input class="form-control" type="text" required id="fullname" name="fullname"
+                                  value="<%= review?.fullname %>" autofocus />
+                              </div>
+                              <div class="mb-3 col-md-6">
+                                <label for="email" class="form-label">E-mail</label>
+                                <input class="form-control" type="text" required id="email" name="email"
+                                  value="<%= review?.email %>" placeholder="" />
+                              </div>
+                              <div class="mb-3 col-md-6">
+                                <label class="form-label" for="phone_number">Phone Number</label>
+                                <div class="input-group input-group-merge">
+                                  <span class="input-group-text">VN (+84)</span>
+                                  <input type="text" id="phone_number" required name="phone_number"
+                                    value="<%= review?.phone_number %>" class="form-control" placeholder="" />
+                                </div>
+                              </div>
+                              <div class="mb-3 col-md-6">
+                                <label class="form-label" for="star">Star</label>
+                                <div class="input-group input-group-merge">
+                                  <input type="number" min="0" max="5" id="star" required name="star"
+                                    value="<%= review?.star %>" class="form-control" placeholder="" />
+                                </div>
+                              </div>
+                              <div class="mb-6 col-md-12">
+                                <label class="form-label" for="content">Bình Luận</label>
+                                <div class="input-group input-group-merge">
+                                  <input type="text" id="content" required name="content" value="<%= review?.content %>"
+                                    class="form-control" placeholder="" />
+                                </div>
+                              </div>
+                              <div class="mb-3 col-md-6">
+                                <label class="form-label" for="is_hidded">Trạng Thái</label>
+                                <select id="is_hidded" name="is_hidded" class="select2 form-select">
+                                  <option value="true" <%=review?.is_hidded ? "selected" : "" %>>Ẩn</option>
+                                  <option value="false" <%=review?.is_hidded ? "" :"selected"%>>Hiện</option>
+                                </select>
+                              </div>
+                            </div>
+
+                            <div class="mt-2">
+                              <button type="submit" class="btn btn-primary me-2">Lưu Thay Đổi</button>
+                              <button type="reset" class="btn btn-outline-secondary">Reset</button>
+                            </div>
+                          </form>
+                        </div>
+                        <!-- /Account -->
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+                <!-- / Content -->
+
+                <!-- Footer -->
+                <%- include('../layout/footer'); %>
+                  <script src="/static/admin/js/pages-account-settings-account.js"></script>
+                  <%- include('../layout/script'); %>

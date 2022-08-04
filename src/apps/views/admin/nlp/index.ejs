@@ -1,0 +1,97 @@
+<%- include('../layout/head', {title: title}); %>
+
+
+  <body>
+    <!-- Layout wrapper -->
+    <div class="layout-wrapper layout-content-navbar">
+      <div class="layout-container">
+        <!-- Menu -->
+        <%- include('../layout/sidebar'); %>
+          <!-- / Menu -->
+
+          <!-- Layout container -->
+          <div class="layout-page">
+            <!-- Navbar -->
+
+            <%- include ('../layout/navbar'); %>
+
+              <!-- / Navbar -->
+
+              <!-- Content wrapper -->
+              <div class="content-wrapper">
+                <!-- Content -->
+
+                <div class="container-xxl flex-grow-1 container-p-y">
+
+
+                  <div class="row">
+                    <div class="col-md-12">
+                      <ul class="nav nav-pills flex-column flex-md-row mb-3">
+
+                        <li class="nav-item">
+                          <a class="nav-link active" id="btnTrainModel" href="/admin/nlp/train"><i
+                              class="bx bx-link-alt me-1"></i>
+                            Train Model</a>
+                        </li>
+                      </ul>
+                      <div class="row">
+                        <div class="col-md-6 col-12 mb-md-0 mb-4">
+                          <div class="card">
+                            <h5 class="card-header">Câu Hỏi</h5>
+                            <div class="card-body">
+                              <p>Dữ Liệu Câu Hỏi Trong Kịch Bản</p>
+                              <!-- Connections -->
+                              <% for( let item of stories ) { %>
+                                <hr class="my-0">
+                                <div class="d-flex mb-3">
+
+                                  <div class="flex-grow-1 row">
+                                    <div class="col-9 mb-sm-0 mb-2">
+                                      <h6 class="mb-0">
+                                        <%= item?.intent_id?.name +" : "+ item?.utter_id?.slug %> </h6>
+                                      <small class=" text-muted">
+                                          <%= item?.intent_id?.description %></small>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <% } %>
+
+                                  <!-- /Connections -->
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                          <div class="card">
+                            <h5 class="card-header">Câu Trả Lời</h5>
+                            <div class="card-body">
+                              <p>Dữ Liệu Câu Trả Lời Trong Kịch Bản</p>
+                              <!-- Social Accounts -->
+                              <% for( let item of stories ) { %>
+                                <hr class="my-0">
+                                <div class="d-flex mb-3">
+
+                                  <div class="flex-grow-1 row">
+                                    <div class="col-9 mb-sm-0 mb-2">
+                                      <h6 class="mb-0">
+                                        <%= item?.utter_id?.name +" : "+ item?.utter_id?.slug %> </h6>
+                                      <small class=" text-muted">
+                                          <%= item?.utter_id?.description %></small>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <% } %>
+                                  <!-- /Social Accounts -->
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- / Content -->
+
+                <!-- Footer -->
+                <%- include('../layout/footer'); %>
+                  <%- include('../layout/script'); %>
